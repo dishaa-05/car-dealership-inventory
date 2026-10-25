@@ -1,11 +1,10 @@
-
 import os
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
-from pathlib import Path
-from fastapi.staticfiles import StaticFiles
+
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, Response, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel, EmailStr, Field
 from pwdlib import PasswordHash
@@ -18,12 +17,24 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Car Dealership Inventory API")
 
+# Allow the React dev server to call the backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 SECRET_KEY = os.getenv(
     "JWT_SECRET_KEY",
     "dev-only-secret-key-for-local-development-123456789",
 )
 ALGORITHM = "HS256"
 ACCESS_TOKEN_MINUTES = 60
+
+# Secret required to create admin accounts via the API
+ADMIN_SECRET = os.getenv("ADMIN_SECRET", "changeme-admin-secret")
 
 password_hash = PasswordHash.recommended()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
@@ -40,6 +51,12 @@ def get_db():
 class RegisterRequest(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8, max_length=128)
+
+
+class RegisterAdminRequest(BaseModel):
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=128)
+    admin_secret: str
 
 
 class LoginRequest(BaseModel):
@@ -105,6 +122,27 @@ def register(data: RegisterRequest, db: Session = Depends(get_db)):
         email=email,
         hashed_password=password_hash.hash(data.password),
         role="user",
+    )
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return {"id": user.id, "email": user.email, "role": user.role}
+
+
+@app.post("/api/auth/register-admin", status_code=status.HTTP_201_CREATED)
+def register_admin(data: RegisterAdminRequest, db: Session = Depends(get_db)):
+    """Create an admin user. Requires the ADMIN_SECRET env var to match."""
+    if data.admin_secret != ADMIN_SECRET:
+        raise HTTPException(status_code=403, detail="Invalid admin secret")
+
+    email = data.email.lower()
+    if db.query(User).filter(User.email == email).first():
+        raise HTTPException(status_code=409, detail="Email already registered")
+
+    user = User(
+        email=email,
+        hashed_password=password_hash.hash(data.password),
+        role="admin",
     )
     db.add(user)
     db.commit()
@@ -241,5 +279,3 @@ def restock_vehicle(
     db.commit()
     db.refresh(vehicle)
     return vehicle
-FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"
-app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
