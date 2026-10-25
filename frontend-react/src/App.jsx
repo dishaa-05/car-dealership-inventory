@@ -56,6 +56,8 @@ function App() {
     make: '',
     model: '',
     category: '',
+    min_price: '',
+    max_price: '',
   })
   const [form, setForm] = useState({
     id: '',
@@ -465,18 +467,34 @@ function App() {
                   event.preventDefault()
                   loadVehicles()
                 }}
-                className="grid gap-3 md:grid-cols-3"
+                className="grid gap-3 sm:grid-cols-2 md:grid-cols-3"
               >
                 <input className={inputClass} placeholder="Make (e.g. Toyota)" value={filters.make} onChange={(event) => updateFilter('make', event.target.value)} />
                 <input className={inputClass} placeholder="Model (e.g. Corolla)" value={filters.model} onChange={(event) => updateFilter('model', event.target.value)} />
                 <input className={inputClass} placeholder="Category (e.g. Sedan)" value={filters.category} onChange={(event) => updateFilter('category', event.target.value)} />
+                <input
+                  className={inputClass}
+                  type="number"
+                  min="0"
+                  placeholder="Min price"
+                  value={filters.min_price}
+                  onChange={(event) => updateFilter('min_price', event.target.value)}
+                />
+                <input
+                  className={inputClass}
+                  type="number"
+                  min="0"
+                  placeholder="Max price"
+                  value={filters.max_price}
+                  onChange={(event) => updateFilter('max_price', event.target.value)}
+                />
                 <div className="flex gap-3 md:col-span-3">
                   <button type="submit" disabled={busy} className={primaryButton}>Search</button>
                   <button
                     type="button"
                     className={outlineButton}
                     onClick={() => {
-                      const empty = { make: '', model: '', category: '' }
+                      const empty = { make: '', model: '', category: '', min_price: '', max_price: '' }
                       setFilters(empty)
                       loadVehicles(empty)
                     }}

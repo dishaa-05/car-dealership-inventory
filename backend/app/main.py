@@ -196,6 +196,8 @@ def search_vehicles(
     make: str | None = None,
     model: str | None = None,
     category: str | None = None,
+    min_price: float | None = None,
+    max_price: float | None = None,
     db: Session = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
@@ -206,6 +208,10 @@ def search_vehicles(
         query = query.filter(Vehicle.model.ilike(f"%{model}%"))
     if category:
         query = query.filter(Vehicle.category.ilike(f"%{category}%"))
+    if min_price is not None:
+        query = query.filter(Vehicle.price >= min_price)
+    if max_price is not None:
+        query = query.filter(Vehicle.price <= max_price)
     return query.all()
 
 

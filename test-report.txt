@@ -1,0 +1,30 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.12.4, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\Disha\car-dealership-inventory\backend\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Disha\car-dealership-inventory\backend
+plugins: anyio-4.15.1
+collecting ... collected 15 items
+
+tests/test_database.py::test_database_uses_sqlite PASSED                 [  6%]
+tests/test_database_tables.py::test_vehicle_table_is_created PASSED      [ 13%]
+tests/test_main.py::test_health_check PASSED                             [ 20%]
+tests/test_vehicle_api.py::test_get_vehicles_returns_list PASSED         [ 26%]
+tests/test_vehicle_api.py::test_create_vehicle PASSED                    [ 33%]
+tests/test_vehicle_api.py::test_search_vehicles_by_make PASSED           [ 40%]
+tests/test_vehicle_api.py::test_update_vehicle PASSED                    [ 46%]
+tests/test_vehicle_api.py::test_delete_vehicle_requires_admin PASSED     [ 53%]
+tests/test_vehicle_api.py::test_purchase_vehicle_reduces_quantity PASSED [ 60%]
+tests/test_vehicle_api.py::test_purchase_vehicle_fails_when_out_of_stock PASSED [ 66%]
+tests/test_vehicle_api.py::test_vehicle_list_requires_login PASSED       [ 73%]
+tests/test_vehicle_api.py::test_registration_rejects_duplicate_email PASSED [ 80%]
+tests/test_vehicle_api.py::test_search_vehicles_by_min_price PASSED      [ 86%]
+tests/test_vehicle_api.py::test_search_vehicles_by_price_range PASSED    [ 93%]
+tests/test_vehicle_model.py::test_vehicle_model_has_required_fields PASSED [100%]
+
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\Disha\car-dealership-inventory\backend\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 15 passed, 1 warning in 3.64s ========================

@@ -151,3 +151,25 @@ def test_registration_rejects_duplicate_email():
 
     assert first.status_code == 201
     assert second.status_code == 409
+
+
+def test_search_vehicles_by_min_price():
+    headers = get_auth_headers()
+    # create a cheap and expensive vehicle
+    client.post("/api/vehicles", headers=headers, json={"make": "Tata", "model": "Nano", "category": "Hatchback", "price": 5000, "quantity": 2})
+    client.post("/api/vehicles", headers=headers, json={"make": "BMW", "model": "7Series", "category": "Sedan", "price": 100000, "quantity": 1})
+
+    response = client.get("/api/vehicles/search?min_price=50000", headers=headers)
+    assert response.status_code == 200
+    assert all(float(v["price"]) >= 50000 for v in response.json())
+
+
+def test_search_vehicles_by_price_range():
+    headers = get_auth_headers()
+    client.post("/api/vehicles", headers=headers, json={"make": "Maruti", "model": "Swift", "category": "Hatchback", "price": 20000, "quantity": 3})
+    client.post("/api/vehicles", headers=headers, json={"make": "Audi", "model": "A8", "category": "Sedan", "price": 200000, "quantity": 1})
+
+    response = client.get("/api/vehicles/search?min_price=10000&max_price=50000", headers=headers)
+    assert response.status_code == 200
+    for v in response.json():
+        assert 10000 <= float(v["price"]) <= 50000
