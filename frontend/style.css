@@ -1,0 +1,512 @@
+
+:root {
+    --navy: #15263f;
+    --blue: #315ee8;
+    --blue-dark: #254bc2;
+    --bg: #f4f6fb;
+    --white: #ffffff;
+    --text: #1c2940;
+    --muted: #788398;
+    --border: #e3e8f1;
+    --green: #16845b;
+    --red: #c43e4b;
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.topbar {
+    min-height: 72px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 21px;
+    letter-spacing: -0.5px;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    background: var(--blue);
+    color: white;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.container {
+    width: min(1160px, 90%);
+    margin: 38px auto 64px;
+}
+
+.auth-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+    min-height: 570px;
+}
+
+.welcome-panel {
+    padding: 40px 0;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.welcome-panel h1 {
+    margin: 14px 0;
+    color: var(--navy);
+    font-size: clamp(38px, 5vw, 60px);
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+.welcome-panel > p:not(.eyebrow) {
+    max-width: 430px;
+    color: var(--muted);
+    line-height: 1.9;
+}
+
+.welcome-stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.stat-symbol {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e0f5eb;
+    color: var(--green);
+}
+
+.auth-card, .panel, .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px rgba(30, 48, 80, 0.035);
+}
+
+.auth-card {
+    padding: 30px;
+}
+
+.auth-tabs {
+    display: flex;
+    padding: 4px;
+    background: var(--bg);
+    border-radius: 10px;
+    margin-bottom: 26px;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    border: 0;
+    border-radius: 8px;
+    color: var(--muted);
+    background: transparent;
+    font-weight: 600;
+}
+
+.tab.active {
+    color: var(--navy);
+    background: white;
+    box-shadow: 0 2px 7px #1c29400d;
+}
+
+h2 {
+    margin: 0;
+    font-size: 21px;
+    letter-spacing: -0.4px;
+}
+
+.auth-card h2 {
+    font-size: 25px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+label {
+    display: block;
+    margin: 17px 0 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #45536a;
+}
+
+input {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 13px;
+    border: 1px solid #dce2ec;
+    border-radius: 9px;
+    background: white;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px #315ee817;
+}
+
+input::placeholder {
+    color: #a0a8b7;
+}
+
+.btn {
+    padding: 11px 16px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    color: white;
+    background: var(--blue);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--blue-dark);
+}
+
+.btn-outline {
+    color: var(--navy);
+    background: white;
+    border-color: var(--border);
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 24px;
+    padding: 13px;
+}
+
+.message {
+    min-height: 18px;
+    font-size: 13px;
+}
+
+.message.error {
+    color: var(--red);
+}
+
+.message.success {
+    color: var(--green);
+}
+
+.page-heading, .section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+}
+
+.page-heading {
+    margin-bottom: 28px;
+}
+
+.page-heading h1 {
+    margin: 0;
+    color: var(--navy);
+    font-size: clamp(28px, 4vw, 36px);
+    letter-spacing: -1.2px;
+}
+
+.page-heading .muted, .section-heading .muted {
+    margin: 5px 0 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    padding: 22px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.stat-card strong {
+    display: block;
+    margin: 8px 0 1px;
+    color: var(--navy);
+    font-size: 32px;
+}
+
+.stat-card .muted {
+    font-size: 11px;
+}
+
+.panel {
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.search-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto auto;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.vehicle-form {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 16px;
+    margin-top: 8px;
+}
+
+.form-field label {
+    margin-top: 12px;
+}
+
+.form-actions {
+    display: flex;
+    align-items: end;
+    gap: 8px;
+    padding-bottom: 1px;
+    flex-wrap: wrap;
+}
+
+.inventory-section {
+    margin-top: 34px;
+}
+
+.inventory-section > .section-heading {
+    margin-bottom: 18px;
+}
+
+.vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.vehicle-card {
+    padding: 21px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 5px 18px rgba(30, 48, 80, 0.025);
+}
+
+.vehicle-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 10px;
+}
+
+.vehicle-card h3 {
+    margin: 0;
+    color: var(--navy);
+    font-size: 19px;
+}
+
+.vehicle-category {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.stock-badge {
+    flex-shrink: 0;
+    padding: 5px 8px;
+    border-radius: 7px;
+    background: #e0f5eb;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.stock-badge.out {
+    background: #ffeaec;
+    color: var(--red);
+}
+
+.vehicle-price {
+    margin: 24px 0 4px;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+}
+
+.stock-info {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.vehicle-actions {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 19px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.vehicle-actions .btn {
+    padding: 9px 11px;
+}
+
+.btn-danger {
+    color: var(--red);
+    background: #fff0f1;
+}
+
+.btn-restock {
+    color: var(--green);
+    background: #e7f7ef;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 48px 20px;
+    text-align: center;
+    color: var(--muted);
+    background: white;
+    border: 1px dashed #ccd5e4;
+    border-radius: var(--radius);
+}
+
+footer {
+    padding: 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+@media (max-width: 850px) {
+    .auth-layout {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .welcome-panel {
+        padding-bottom: 0;
+    }
+
+    .welcome-panel h1 {
+        font-size: 43px;
+    }
+
+    .search-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .vehicle-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .container {
+        width: 92%;
+        margin-top: 24px;
+    }
+
+    .topbar {
+        padding: 0 4%;
+    }
+
+    .auth-card, .panel {
+        padding: 19px;
+    }
+
+    .stats-grid, .vehicle-grid, .vehicle-form {
+        grid-template-columns: 1fr;
+    }
+
+    .search-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-heading {
+        align-items: start;
+    }
+
+    .header-right {
+        gap: 7px;
+    }
+}
