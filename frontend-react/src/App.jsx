@@ -133,6 +133,7 @@ function App() {
     setToken('')
     setUser(null)
     setVehicles([])
+    setEmail('')
     setPassword('')
     setForm({
       id: '',
@@ -142,6 +143,7 @@ function App() {
       price: '',
       quantity: '',
     })
+    setFilters({ make: '', model: '', category: '', min_price: '', max_price: '' })
     notify('You have logged out.')
   }
 
@@ -332,29 +334,7 @@ function App() {
                 Manage dealership inventory, discover vehicles, and keep every detail in one place.
               </p>
 
-              <div className="mt-8 flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 font-bold text-emerald-700">
-                  ✓
-                </span>
-                <span className="text-sm font-semibold text-slate-700">
-                  Simple and secure inventory management
-                </span>
-              </div>
 
-              <div className="mt-8 grid grid-cols-3 gap-3">
-                <div className="rounded-2xl bg-blue-50 p-4">
-                  <p className="text-2xl font-black text-blue-700">01</p>
-                  <p className="mt-1 text-xs text-slate-500">Sign in</p>
-                </div>
-                <div className="rounded-2xl bg-slate-100 p-4">
-                  <p className="text-2xl font-black text-slate-800">02</p>
-                  <p className="mt-1 text-xs text-slate-500">Discover</p>
-                </div>
-                <div className="rounded-2xl bg-emerald-50 p-4">
-                  <p className="text-2xl font-black text-emerald-700">03</p>
-                  <p className="mt-1 text-xs text-slate-500">Manage</p>
-                </div>
-              </div>
             </section>
 
             <section className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 sm:p-8">
@@ -476,7 +456,8 @@ function App() {
                   className={inputClass}
                   type="number"
                   min="0"
-                  placeholder="Min price"
+                  step="any"
+                  placeholder="Min price (e.g. 500000)"
                   value={filters.min_price}
                   onChange={(event) => updateFilter('min_price', event.target.value)}
                 />
@@ -484,7 +465,8 @@ function App() {
                   className={inputClass}
                   type="number"
                   min="0"
-                  placeholder="Max price"
+                  step="any"
+                  placeholder="Max price (e.g. 2000000)"
                   value={filters.max_price}
                   onChange={(event) => updateFilter('max_price', event.target.value)}
                 />
@@ -528,7 +510,7 @@ function App() {
                   </div>
                   <div>
                     <label className="mb-2 block text-sm font-semibold">Price (₹)</label>
-                    <input className={inputClass} type="number" min="0.01" step="0.01" value={form.price} onChange={(event) => updateForm('price', event.target.value)} placeholder="250000" required />
+                    <input className={inputClass} type="number" min="0.01" step="any" value={form.price} onChange={(event) => updateForm('price', event.target.value)} placeholder="850000" required />
                   </div>
                   <div>
                     <label className="mb-2 block text-sm font-semibold">Quantity</label>

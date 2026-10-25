@@ -131,22 +131,64 @@ cd backend
 
 ## Screenshots
 
-> _Add screenshots of the application here._
+### Login Page
+![Login](screenshots/login.png)
+
+### Register Page
+![Register](screenshots/register.png)
+
+### Admin Login
+![Admin Login](screenshots/admin_login.png)
+
+### User Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+![User Dashboard 1](screenshots/user_dashboard_1.png)
+
+![User Dashboard 2](screenshots/user_dashboard_2.png)
+
+### Search & Filter
+![Search Vehicle](screenshots/search_vehicle.png)
+
+### Purchase Vehicle
+![Purchase Vehicle](screenshots/purchase_vehicle.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin_dashboard.png)
+
+![Admin Dashboard 1](screenshots/admin_dashboard_1.png)
+
+![Admin Dashboard 2](screenshots/admin_dashboard_2.png)
+
+### Admin — Add Vehicle
+![Admin Add Vehicle](screenshots/admin_add_vehicle.png)
+
+### Admin — Edit Vehicle
+![Admin Edit Vehicle](screenshots/admin_edit_vehicle.png)
+
+### Admin — Delete Vehicle
+![Admin Delete Vehicle](screenshots/admin_delete_vehicle.png)
+
+### Admin — Restock Vehicle
+![Admin Restock](screenshots/admin_restock.png)
 
 ---
 
 ## My AI Usage
 
-> **Note:** This section must be filled in by the developer with their personal AI usage details.
-
 ### Tools Used
-- [Describe which AI tools you used — e.g. GitHub Copilot, ChatGPT, Gemini, Kiro, etc.]
+- **ChatGPT** — for understanding prerequisites, environment setup, backend and frontend development
+- **Kiro** — for documentation, README generation, and debugging errors
 
 ### How I Used Them
-- [Describe specific use cases — e.g. "Used Kiro to generate the initial FastAPI boilerplate and test stubs, then manually added validation logic and refined the auth flow."]
+
+- **ChatGPT**: Used ChatGPT to understand the project prerequisites and verify that all required tools were installed correctly. It provided commands to check installations (Python, Node.js,etc.), helped with the initial backend setup, and assisted with the React frontend development including UI components, API calls, and structuring the single-page application.
+
+- **Kiro**: Used Kiro IDE's AI assistant to generate the README documentation, identify missing features, troubleshoot errors, and fix bugs that came up during development.
 
 ### Reflection
-- [Describe how AI impacted your workflow — what it helped with, what you had to fix or verify yourself, how it changed your development speed.]
+
+AI tools played a major role in building this project. I used them to generate code, write tests, and set up the project structure. My contribution was in understanding the requirements, directing the AI with the right prompts, testing the application manually, verifying that features worked correctly end-to-end, and debugging issues when things didn't work as expected.
 
 ---
 
